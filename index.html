@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK Energy Dashboard</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-layout">
+        <header class="top-navbar">
+            <div class="navbar-inner">
+                <div class="brand-logo">
+                    <h1>UK Energy Dashboard</h1>
+                </div>
+
+                <nav class="navbar-controls">
+                    <div class="nav-group">
+                        <label>Data Strategy</label>
+                        <button id="toggle-data" class="nav-btn active">
+                            <span class="btn-indicator"></span>
+                            <span id="toggle-text">Direct Consumption</span>
+                        </button>
+                    </div>
+
+                    <div class="nav-group">
+                        <label>Column name</label>
+                        <div class="select-wrapper">
+                            <select id="sector-picker"></select>
+                        </div>
+                    </div>
+
+                    <div class="nav-group year-group">
+                        <label>Year Range: <span id="active-year">2023</span></label>
+                        <div class="slider-container">
+                            <input type="range" id="year-control" min="1990" max="2023" value="2023">
+                            <div class="slider-labels">
+                                <span>1990</span>
+                                <span>2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="dashboard-section">
+                <div class="section-heading">
+                    <h2>Demand Overview</h2>
+                    <p>Selected sector performance and current year ranking.</p>
+                </div>
+                <div class="chart-row">
+                    <article class="chart-card">
+                        <div class="card-info">
+                            <h3>Historical Demand Evolution</h3>
+                            <p>Tracking energy usage patterns over the last 30 years.</p>
+                        </div>
+                        <div id="trend-analysis" class="chart-container"></div>
+                    </article>
+                    
+                    <article class="chart-card">
+                        <div class="card-info">
+                            <h3>Resource Efficiency Ranking</h3>
+                            <p>Top performing sectors by consumption volume.</p>
+                        </div>
+                        <div id="ranking-analysis" class="chart-container"></div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="dashboard-section">
+                <div class="section-heading">
+                    <h2>Consumption Comparison</h2>
+                    <p>Direct use, reallocated use, and sector-year intensity.</p>
+                </div>
+                <div class="chart-row">
+                    <article class="chart-card">
+                        <div class="card-info">
+                            <h3>Historical Efficiency Gap</h3>
+                            <p>Direct consumption and reallocated use compared across the selected sector.</p>
+                        </div>
+                        <div id="efficiency-gap" class="chart-container"></div>
+                    </article>
+
+                    <article class="chart-card heatmap-card">
+                        <div class="card-info">
+                            <h3>Energy Intensity Heatmap</h3>
+                            <p>All sectors across all years using the active data strategy.</p>
+                        </div>
+                        <div id="energy-heatmap" class="chart-container"></div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="dashboard-section">
+                <div class="section-heading">
+                    <h2>Supply Composition</h2>
+                    <p>Renewable and waste source contribution over time and for the selected year.</p>
+                </div>
+                <div class="chart-row">
+                    <article class="chart-card">
+                        <div class="card-info">
+                            <h3>Source Composition Matrix</h3>
+                            <p>Temporal distribution of energy supply by primary fuel source.</p>
+                        </div>
+                        <div id="composition-analysis" class="chart-container"></div>
+                    </article>
+
+                    <article class="chart-card">
+                        <div class="card-info">
+                            <h3>Selected Year Source Mix</h3>
+                            <p>Largest renewable and waste sources for the active year.</p>
+                        </div>
+                        <div id="source-breakdown" class="chart-container"></div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="tooltip" class="tooltip" style="opacity: 0;"></div>
+    <script src="app.js"></script>
+</body>
+</html>
